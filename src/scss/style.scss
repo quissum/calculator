@@ -1,0 +1,143 @@
+@use 'sass:math';
+@use 'sass:color';
+
+//# FONTS
+//# &display=swap - add when connected via plugin
+@import url('https://fonts.googleapis.com/css2?family=Noto+Music&display=swap');
+//# connect local fonts
+// @import './fonts/fonts';
+// # connect local font-icons
+// @import './fonts/icons';
+
+//# BASE
+@import './modules/base/vars';
+@import './modules/base/mixins';
+@import './modules/base/zeroing';
+@import './modules/base/base';
+
+//#----------------------------------------------------------------
+//#----------------------------------------------------------------
+//#----------------------------------------------------------------
+
+body {
+  background-color: $black;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main {
+  font-size: rem(20);
+}
+
+.result {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: rem(130, 20);
+  padding-bottom: rem(20, 20);
+  // .result__content
+  &__content {
+    position: relative;
+    max-width: rem(270, 47);
+    font-size: rem(47, 20);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: copy;
+    &::before {
+      content: 'Copied!';
+      position: absolute;
+      right: rem(0);
+      bottom: 100%;
+      padding: rem(4) rem(10) rem(10);
+      font-size: rem(24, 47);
+      border-radius: rem(8);
+      background-color: rgba($color: $darkgray, $alpha: 0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s 0.3s ease-in-out;
+    }
+    &._active::before {
+      opacity: 0.7;
+      transition-duration: 0s;
+      transition-delay: 0s;
+    }
+  }
+}
+
+.buttons-container {
+  display: grid;
+  grid-template-columns: repeat(4, rem(60, 20));
+  gap: rem(10, 20);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: rem(60, 20);
+  padding-bottom: rem(6, 20);
+  border-radius: rem(60, 20);
+  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+  & > * {
+    pointer-events: none;
+  }
+  sub,
+  sup {
+    position: relative;
+    font-size: rem(12, 20);
+  }
+  sub {
+    top: rem(3, 12);
+  }
+  sup {
+    top: rem(-3, 12);
+  }
+  // .btn_light
+  &_light {
+    color: $darkgray;
+    background-color: $lightgray;
+  }
+  // .btn_orange
+  &_orange {
+    background-color: $orange;
+  }
+  // .btn_dark
+  &_dark {
+    background-color: $darkgray;
+  }
+  // .btn_zero
+  &_zero {
+    grid-column: span 2;
+  }
+
+  @media (any-hover: hover) {
+    &_light:hover {
+      background-color: color.adjust($lightgray, $lightness: 20%);
+    }
+    &_orange:hover {
+      background-color: color.adjust($orange, $lightness: 20%);
+    }
+    &_dark:hover {
+      background-color: color.adjust($darkgray, $lightness: 20%);
+    }
+  }
+  &:active {
+    transition-duration: 0s;
+  }
+  &_light:active {
+    background-color: color.adjust($lightgray, $lightness: 30%);
+  }
+  &_orange:active {
+    background-color: color.adjust($orange, $lightness: 30%);
+  }
+  &_dark:active {
+    background-color: color.adjust($darkgray, $lightness: 30%);
+  }
+
+  &_orange._active {
+    color: $orange;
+    background-color: #fff;
+  }
+}

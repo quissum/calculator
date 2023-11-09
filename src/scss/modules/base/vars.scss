@@ -1,0 +1,37 @@
+//# restrective container
+$width-container: 1680;
+$padding-container: 20;
+$padding-container-tablet: 20;
+$padding-container-mobile: 20;
+$max-width-container: $width-container + ($padding-container * 2);
+
+//# page size
+$min-width-page: 320;
+$max-width-page: 1920;
+
+//# breakpoints
+$pc: $max-width-container;
+$laptop-large: 1679.98;
+$laptop: 1199.98;
+$tablet: 991.98;
+$mobile: 767.98;
+$mobile-small: 479.98;
+
+//# font
+$font-family: 'Noto Music', sans-serif;
+$font-weight: 400;
+$font-size: 18;
+$line-height: 1;
+
+//# colors
+$main-color: #fff;
+$lightgray: #d4d4d2;
+$black: #1c1c1c;
+$darkgray: #505050;
+$orange: #ff9500;
+
+//#==============
+
+//#==============
+
+$media-queries-menu: $tablet;

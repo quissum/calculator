@@ -1,0 +1,29 @@
+//# RESPONSIVE UNITS
+//# rem
+@function rem($value, $parentValue: 0) {
+  @if $parentValue > 0 {
+    @return math.div($value, $parentValue) + em;
+  } @else {
+    @return math.div($value, 16) + rem;
+  }
+}
+//# percent
+@function percent($num1, $num2) {
+  @return math.percentage(math.div(math.round(math.div($num1, $num2) * 1000000), 1000000));
+}
+
+//# ADAPTIVE VALUE
+@mixin adaptiveValue($property, $max, $min, $max-width: $max-width-page, $min-width: $min-width-page) {
+  $max-value: 0;
+  $min-value: 0;
+
+  @if $max > $min {
+    $max-value: $max;
+    $min-value: $min;
+  } @else {
+    $max-value: $min;
+    $min-value: $max;
+  }
+
+  #{$property}: clamp(#{rem($min-value)}, #{rem($min)} + #{$max - $min} * ((100vw - #{$min-width + px}) / #{($max-width - $min-width)}), #{rem($max-value)});
+}

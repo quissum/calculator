@@ -1,0 +1,5 @@
+*.zip
+*.fig
+package-lock.json
+node_modules
+.npmrc
